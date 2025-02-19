@@ -21,8 +21,8 @@ app.post("/send-email", async (req, res) => {
   const mailOptions = {
     from: email,
     to: "charanraju925@gmail.com", // Admin email to receive messages
-    subject: `New Contact Form Submission: ${subject}`,
-    text: `From: ${name} (${email})\n\n${message}`,
+    subject: `Message For You From Portfolio: ${subject}`,
+    text: `From : ${name}\nEmail : (${email}) \n\n Message : \n${message}`,
   };
 
   try {
