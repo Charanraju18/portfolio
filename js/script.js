@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     z-index: 1000;
   `;
 
