@@ -34,11 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
     transform: translateX(-50%);
     background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
     z-index: 1000;
   `;
 
@@ -64,10 +65,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         form.reset(); // Clears input fields
-        popup.style.opacity = "1"; // Show popup
 
+        // Show popup
+        popup.style.opacity = "1";
+        popup.style.visibility = "visible";
+
+        // Hide popup after 3 seconds with fade effect
         setTimeout(() => {
-          popup.style.opacity = "0"; // Hide popup after 3 seconds
+          popup.style.opacity = "0";
+          popup.style.visibility = "hidden";
         }, 3000);
       } else {
         console.error("Failed to send message.");
@@ -77,5 +83,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-
