@@ -51,24 +51,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const subject = form.querySelector('input[placeholder="Subject"]').value;
     const message = form.querySelector('textarea[placeholder="Message"]').value;
 
-    const response = await fetch(
-      "https://portfolio-backend-fk8o.onrender.com/send-email",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message }),
+    try {
+      const response = await fetch(
+        "https://portfolio-backend-fk8o.onrender.com/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, subject, message }),
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        form.reset(); // Clears input fields
+        popup.style.display = "block"; // Show success popup
+
+        setTimeout(() => {
+          popup.style.display = "none"; // Hide popup after 3 seconds
+        }, 3000);
+      } else {
+        alert("Error sending message. Please try again.");
       }
-    );
-
-    if (response.ok) {
-      form.reset(); // Clears all input fields
-      popup.style.display = "block"; // Show success popup
-
-      setTimeout(() => {
-        popup.style.display = "none"; // Hide popup after 3 seconds
-      }, 3000);
-    } else {
-      alert("Error sending message. Please try again.");
+    } catch (error) {
+      alert("Network error. Please try again later.");
     }
   });
 });
+
