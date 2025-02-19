@@ -38,8 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
     z-index: 1000;
   `;
 
@@ -68,12 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Show popup
         popup.style.opacity = "1";
-        popup.style.visibility = "visible";
 
         // Hide popup after 3 seconds with fade effect
         setTimeout(() => {
           popup.style.opacity = "0";
-          popup.style.visibility = "hidden";
         }, 3000);
       } else {
         console.error("Failed to send message.");
