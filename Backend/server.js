@@ -1,21 +1,22 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 app.post("/send-email", async (req, res) => {
   const { name, email, subject, message } = req.body;
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "charanraju925@gmail.com", // Replace with your email
-      pass: "mtlx fokw fkta ndxq", // Replace with your email password or app password
-    },
-  });
 
   const mailOptions = {
     from: email,
@@ -31,22 +32,5 @@ app.post("/send-email", async (req, res) => {
     res.status(500).json({ message: "Error sending email", error });
   }
 });
-
-const corsOptions = {
-  origin: "*", // Change this to your frontend URL for security (e.g., "https://your-frontend.github.io")
-  methods: "POST",
-  allowedHeaders: ["Content-Type"],
-};
-require("dotenv").config();
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
-app.use(cors(corsOptions));
 
 app.listen(5000, () => console.log("Server running on port 5000"));
