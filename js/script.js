@@ -23,9 +23,9 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".contact-form");
-  const popup = document.createElement("div");
 
-  // Create success popup
+  // Create success popup dynamically
+  const popup = document.createElement("div");
   popup.textContent = "Message sent successfully!";
   popup.style.cssText = `
     position: fixed;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(popup);
 
   form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevents form from reloading the page
 
     const name = form.querySelector('input[placeholder="Your Name"]').value;
     const email = form.querySelector('input[placeholder="Your Email"]').value;
@@ -61,9 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (response.ok) {
         form.reset(); // Clears input fields
         popup.style.display = "block"; // Show success popup
 
@@ -71,11 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
           popup.style.display = "none"; // Hide popup after 3 seconds
         }, 3000);
       } else {
-        alert("Error sending message. Please try again.");
+        console.error("Failed to send message.");
       }
     } catch (error) {
-      alert("Network error. Please try again later.");
+      console.error("Network error:", error);
     }
   });
 });
+
 
