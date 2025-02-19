@@ -32,4 +32,21 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
+const corsOptions = {
+  origin: "*", // Change this to your frontend URL for security (e.g., "https://your-frontend.github.io")
+  methods: "POST",
+  allowedHeaders: ["Content-Type"],
+};
+require("dotenv").config();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+app.use(cors(corsOptions));
+
 app.listen(5000, () => console.log("Server running on port 5000"));
