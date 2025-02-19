@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
     z-index: 1000;
   `;
 
@@ -63,10 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         form.reset(); // Clears input fields
-        popup.style.display = "block"; // Show success popup
+        popup.style.opacity = "1"; // Show popup
 
         setTimeout(() => {
-          popup.style.display = "none"; // Hide popup after 3 seconds
+          popup.style.opacity = "0"; // Hide popup after 3 seconds
         }, 3000);
       } else {
         console.error("Failed to send message.");
