@@ -366,7 +366,8 @@ mark,
 
 .list-unstyled {
   padding-left: 0;
-  list-style: none; }
+  list-style: none;
+}
 
 .list-inline {
   padding-left: 0;
@@ -3367,7 +3368,8 @@ input[type="button"].btn-block {
   display: block;
   padding: 0.5rem 1rem; }
   .nav-link:hover, .nav-link:focus {
-    text-decoration: none; }
+    text-decoration: none;
+  cursor: pointer;}
   .nav-link.disabled {
     color: #6c757d;
     pointer-events: none;
@@ -9130,6 +9132,7 @@ textarea.form-control {
     border-radius: 50%;
     position: relative; }
     .ftco-footer-social li a span {
+
       position: absolute;
       font-size: 26px;
       top: 50%;
